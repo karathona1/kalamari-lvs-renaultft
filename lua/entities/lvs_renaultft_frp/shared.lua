@@ -19,6 +19,8 @@ ENT.MaxHealth = 1300
 
 ENT.SpawnNormalOffset = 40
 
+--ENT.TurretSeatIndex = 2
+
 //damage system
 ENT.DSArmorIgnoreForce = 1800
 ENT.CannonArmorPenetration = 3900
@@ -63,7 +65,8 @@ ENT.EngineSounds = {
 }
 
 function ENT:OnSetupDataTables()
-	self:AddDT( "Entity", "GunnerSeat" )
+    self:AddDT( "Entity", "WeaponSeat" )
+    self:AddDT( "Entity", "GunnerSeat" )
 end
 
 //puteaux 37mm gun
