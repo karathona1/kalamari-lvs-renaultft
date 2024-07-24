@@ -14,7 +14,7 @@ function ENT:OnSpawn( PObj )
 	DriverSeat.HidePlayer = true
 
 	local GunnerSeat = self:AddPassengerSeat( Vector(30,0,45), Angle(0,-90,0) )
-	GunnerSeat.HidePlayer = false
+	GunnerSeat.HidePlayer = true
 	self:SetGunnerSeat( GunnerSeat )
 
 	if self.TurretSeatIndex == 1 then
