@@ -15,20 +15,6 @@ ENT.TurretYawPoseParameterName = "turret_yaw"
 ENT.TurretYawMul = -1
 ENT.TurretYawOffset = 0
 
-if CLIENT then
-    function ENT:CalcTurret()
-        local pod = self:GetWeaponSeat()
-        if not IsValid( pod ) then return end
-
-        local plyL = LocalPlayer()
-        local ply = pod:GetDriver()
-
-        if ply ~= plyL then return end
-
-        self:AimTurret()
-    end
-end
-
 function ENT:IsTurretEnabled()
     if self:GetHP() <= 0 then return false end
 

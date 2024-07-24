@@ -8,7 +8,7 @@ function ENT:TankViewOverride( ply, pos, angles, fov, pod )
 		local Muzzle = self:GetAttachment( ID )
 
 		if Muzzle then
-			pos =  Muzzle.Pos - Muzzle.Ang:Up() * 57 - Muzzle.Ang:Forward() * 0 - Muzzle.Ang:Right() * 53
+			pos =  Muzzle.Pos - Muzzle.Ang:Up() * 58 - Muzzle.Ang:Forward() * 0 - Muzzle.Ang:Right() * 53
 		end
 	else
 		local ID = self:LookupAttachment( "turret" )
@@ -24,7 +24,7 @@ function ENT:TankViewOverride( ply, pos, angles, fov, pod )
 end
 
 function ENT:CalcViewPassenger( ply, pos, angles, fov, pod )
-	if pod == self:GetGunnerSeat() and not pod:GetThirdPersonMode() then
+	if ply == self:GetGunnerSeat() and not pod:GetThirdPersonMode() then
 		local ID = self:LookupAttachment( "gunview" )
 
 		local Muzzle = self:GetAttachment( ID )

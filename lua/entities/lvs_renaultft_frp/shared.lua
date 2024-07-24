@@ -19,8 +19,6 @@ ENT.MaxHealth = 1300
 
 ENT.SpawnNormalOffset = 40
 
---ENT.TurretSeatIndex = 2
-
 //damage system
 ENT.DSArmorIgnoreForce = 1800
 ENT.CannonArmorPenetration = 3900
@@ -29,7 +27,7 @@ ENT.MaxVelocity = 150
 ENT.MaxVelocityReverse = 100
 
 ENT.EngineCurve = 0.2
-ENT.EngineTorque = 130
+ENT.EngineTorque = 200
 
 ENT.TransGears = 3
 ENT.TransGearsReverse = 1
@@ -44,6 +42,8 @@ ENT.lvsShowInSpawner = true
 
 ENT.WheelBrakeAutoLockup = true
 ENT.WheelBrakeLockupRPM = 15
+
+ENT.TurretSeatIndex = 2
 
 ENT.EngineSounds = {
 	{
@@ -75,7 +75,7 @@ function ENT:InitWeapons()
 
 	//MACHINEGUN
 	local weapon = {}
-	weapon.Icon = Material("lvs/weapons/mg.png")
+	weapon.Icon = Material("weapons/mg.png")
 	weapon.Ammo = 1500
 	weapon.Delay = 0.1
 	weapon.HeatRateUp = 0.2
@@ -144,7 +144,7 @@ function ENT:InitWeapons()
 	weapon.OnOverheat = function( ent )
 		ent:EmitSound("lvs/overheat.wav")
 	end
-	self:AddWeapon( weapon, 2 )
+	self:AddWeapon( weapon, self.TurretSeatIndex )
 
 	//NOTHING
 	local weapon = {}
@@ -163,7 +163,7 @@ function ENT:InitWeapons()
 			ent:SetTurretEnabled( true )
 		end
 	end
-	self:AddWeapon( weapon, 2 )
+	self:AddWeapon( weapon, self.TurretSeatIndex )
 end
 
 ENT.ExhaustPositions = {

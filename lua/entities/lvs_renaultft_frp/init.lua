@@ -13,8 +13,8 @@ function ENT:OnSpawn( PObj )
 	local DriverSeat = self:AddDriverSeat( Vector(25,0,20), Angle(0,-90,0) )
 	DriverSeat.HidePlayer = true
 
-	local GunnerSeat = self:GetGunnerSeat( Vector(30,0,45), Angle(0,-90,0) )
-	GunnerSeat.HidePlayer = true
+	local GunnerSeat = self:AddPassengerSeat( Vector(30,0,45), Angle(0,-90,0) )
+	GunnerSeat.HidePlayer = false
 	self:SetGunnerSeat( GunnerSeat )
 
 	local ID = self:LookupAttachment( "gun_muzzle" )
@@ -45,6 +45,8 @@ function ENT:OnSpawn( PObj )
 	TurretArmor.OnRepaired = function( ent ) if not IsValid( self ) then return end self:SetTurretDestroyed( false ) end
 	TurretArmor:SetLabel( "Turret" )
 	self:SetTurretArmor( TurretArmor )
+
+	self:AddTrailerHitch( Vector(-112.92,0,37.25), LVS.HITCHTYPE_MALE )
 end
 
 -- set material on death
