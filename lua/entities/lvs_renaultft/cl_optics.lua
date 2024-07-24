@@ -1,12 +1,9 @@
-
 ENT.OpticsFov = 50
 ENT.OpticsEnable = true
 ENT.OpticsZoomOnly = true
 ENT.OpticsFirstPerson = true
 ENT.OpticsThirdPerson = false
-ENT.OpticsPodIndex = {
-	[1] = true,
-}
+ENT.OpticsPodIndex = nil -- do not put a table here, lua inheritance will FUCK it up
 
 local axis = Material( "lvs/circle_hollow.png" )
 local sight = Material( "lvs/shermansights.png" )
@@ -23,7 +20,7 @@ function ENT:PaintOptics( Pos2D, Col, PodIndex, Type )
 	surface.SetDrawColor( 0, 0, 0, 150 )
 	surface.DrawTexturedRect( Pos2D.x - 210, Pos2D.y - 23, 420, 420 )
 
-	self:DrawRotatedText( "PUTEAUX 37mm", Pos2D.x + 55, Pos2D.y + 10, "LVS_FONT_PANEL", Color(0,0,0,220), 0)
+	self:DrawRotatedText( self.WeaponName, Pos2D.x + 55, Pos2D.y + 10, "LVS_FONT_PANEL", Color(0,0,0,220), 0)
 
 	local diameter = ScrH()
 	local radius = diameter * 0.5

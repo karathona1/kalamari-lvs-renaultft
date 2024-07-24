@@ -1,4 +1,4 @@
-ENT.Base = "lvs_tank_wheeldrive"
+ENT.Base = "lvs_renaultft"
 
 ENT.PrintName = "FT (8mm Mitrailleuse)"
 ENT.Author = "Kalamari"
@@ -13,60 +13,11 @@ ENT.AdminSpawnable		= false
 
 ENT.MDL = "models/tank_ft_female.mdl"
 
-ENT.AITEAM = 2
+// used in cl_optics.lua
+ENT.WeaponName = "HOTCHKISS 8mm"
 
-ENT.MaxHealth = 1300
+ENT.TurretSeatIndex = 1
 
-ENT.SpawnNormalOffset = 40
-
-//damage system
-ENT.DSArmorIgnoreForce = 1800
-ENT.CannonArmorPenetration = 3900
-
-ENT.MaxVelocity = 190
-ENT.MaxVelocityReverse = 120
-
-ENT.EngineCurve = 0.2
-ENT.EngineTorque = 200
-
-ENT.TransGears = 3
-ENT.TransGearsReverse = 1
-
-ENT.FastSteerAngleClamp = 15
-ENT.FastSteerDeactivationDriftAngle = 12
-
-ENT.PhysicsDampingForward = true
-ENT.PhysicsDampingReverse = true
-
-ENT.lvsShowInSpawner = true
-
-ENT.WheelBrakeAutoLockup = true
-ENT.WheelBrakeLockupRPM = 15
-
-ENT.EngineSounds = {
-	{
-		sound = "engine1.wav",
-		Volume = 0.7,
-		Pitch = 50,
-		PitchMul = 25,
-		SoundLevel = 75,
-		SoundType = LVS.SOUNDTYPE_IDLE_ONLY,
-	},
-	{
-		sound = "engineFT.wav",
-		Volume = 0.7,
-		Pitch = 50,
-		PitchMul = 25,
-		SoundLevel = 75,
-		UseDoppler = true,
-	},
-}
-
-function ENT:OnSetupDataTables()
-	self:AddDT( "Entity", "GunnerSeat" )
-end
-
-//puteaux 37mm gun
 function ENT:InitWeapons()
 	local COLOR_WHITE = Color(255,255,255,255)
 
@@ -79,9 +30,9 @@ function ENT:InitWeapons()
 	weapon.HeatRateDown = 0.2
 	weapon.Attack = function( ent )
 
-		local ID = ent:LookupAttachment( "gun_muzzle" )
 		local veh = ent:GetVehicle()
-		local Muzzle = ent:GetAttachment( ID )
+		local ID = veh:LookupAttachment( "gun_muzzle" )
+		local Muzzle = veh:GetAttachment( ID )
 
 		if not Muzzle then return end
 
@@ -94,54 +45,58 @@ function ENT:InitWeapons()
 		bullet.HullSize = 0
 		bullet.Damage	= 15
 		bullet.Velocity = 30000
-		bullet.Attacker = ent:GetPassenger( GunnerSeat )
-		ent:LVSFireBullet( bullet )
+		bullet.Attacker = veh:GetGunnerSeat():GetDriver()
+		veh:LVSFireBullet( bullet )
 
 		local effectdata = EffectData()
 		effectdata:SetOrigin( bullet.Src )
 		effectdata:SetNormal( bullet.Dir )
-		effectdata:SetEntity( ent )
+		effectdata:SetEntity( veh )
 		util.Effect( "lvs_muzzle", effectdata )
 
-		local PhysObj = ent:GetPhysicsObject()
+		local PhysObj = veh:GetPhysicsObject()
 		if IsValid( PhysObj ) then
-			PhysObj:ApplyForceOffset( -bullet.Dir * 5000, bullet.Src )
+			PhysObj:ApplyForceOffset( -bullet.Dir * 2000, bullet.Src )
 		end
 
 		veh:PlayAnimation("gun_recoil")
 		ent:TakeAmmo( 1 )
 	end
 	weapon.StartAttack = function( ent )
-		if not IsValid( ent.SNDTurretMG ) then return end
-		ent.SNDTurretMG:Play()
+		local veh = ent:GetVehicle()
+		if not IsValid( veh.SNDTurretMG ) then return end
+		veh.SNDTurretMG:Play()
 	end
 	weapon.FinishAttack = function( ent )
-		if not IsValid( ent.SNDTurretMG ) then return end
-		ent.SNDTurretMG:Stop()
+		local veh = ent:GetVehicle()
+		if not IsValid( veh.SNDTurretMG ) then return end
+		veh.SNDTurretMG:Stop()
 	end
 	weapon.OnOverheat = function( ent ) ent:EmitSound("lvs/overheat.wav") end
 	weapon.HudPaint = function( ent, X, Y, ply )
-		local ID = ent:LookupAttachment( "gun_muzzle" )
+		local veh = ent:GetVehicle()
+		local ID = veh:LookupAttachment( "gun_muzzle" )
 
-		local Muzzle = ent:GetAttachment( ID )
+		local Muzzle = veh:GetAttachment( ID )
 
 		if Muzzle then
 			local traceTurret = util.TraceLine( {
-				start = Muzzle.Pos, 
+				start = Muzzle.Pos,
 				endpos = Muzzle.Pos - Muzzle.Ang:Forward() * 50000,
-				filter = ent:GetCrosshairFilterEnts()
+				filter = veh:GetCrosshairFilterEnts()
 			} )
 
-			local MuzzlePos2D = traceTurret.HitPos:ToScreen() 
+			local MuzzlePos2D = traceTurret.HitPos:ToScreen()
 
-			ent:PaintCrosshairCenter( MuzzlePos2D, COLOR_WHITE )
-			ent:LVSPaintHitMarker( MuzzlePos2D )
+			veh:PaintCrosshairCenter( MuzzlePos2D, COLOR_WHITE )
+			veh:LVSPaintHitMarker( MuzzlePos2D )
 		end
 	end
 	weapon.OnOverheat = function( ent )
-		ent:EmitSound("lvs/overheat.wav")
+		local veh = ent:GetVehicle()
+		veh:EmitSound("lvs/overheat.wav")
 	end
-	self:AddWeapon( weapon, 1 )
+	self:AddWeapon( weapon, self.TurretSeatIndex )
 
 	//NOTHING
 	local weapon = {}
@@ -151,21 +106,16 @@ function ENT:InitWeapons()
 	weapon.HeatRateUp = 0
 	weapon.HeatRateDown = 0
 	weapon.OnSelect = function( ent )
-		if ent.SetTurretEnabled then
-			ent:SetTurretEnabled( false )
+		local veh = ent:GetVehicle()
+		if veh.SetTurretEnabled then
+			veh:SetTurretEnabled( false )
 		end
 	end
 	weapon.OnDeselect = function( ent )
-		if ent.SetTurretEnabled then
-			ent:SetTurretEnabled( true )
+		local veh = ent:GetVehicle()
+		if veh.SetTurretEnabled then
+			veh:SetTurretEnabled( true )
 		end
 	end
-	self:AddWeapon( weapon, 1 )
+	self:AddWeapon( weapon, self.TurretSeatIndex )
 end
-
-ENT.ExhaustPositions = {
-	{
-		pos = Vector(-51,-28,48),
-		ang = Angle(180,55,0),
-	},
-}

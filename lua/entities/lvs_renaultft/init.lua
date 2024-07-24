@@ -17,11 +17,22 @@ function ENT:OnSpawn( PObj )
 	GunnerSeat.HidePlayer = false
 	self:SetGunnerSeat( GunnerSeat )
 
+	if self.TurretSeatIndex == 1 then
+		self:SetWeaponSeat( DriverSeat )
+	elseif self.TurretSeatIndex == 2 then
+		self:SetWeaponSeat( GunnerSeat )
+	end
+
 	local ID = self:LookupAttachment( "gun_muzzle" )
 	local Muzzle = self:GetAttachment( ID )
+
 	self.SNDTurretMG = self:AddSoundEmitter( self:WorldToLocal( Muzzle.Pos ), "lvs/vehicles/sherman/mg_loop.wav", "lvs/vehicles/sherman/mg_loop_interior.wav" )
 	self.SNDTurretMG:SetSoundLevel( 95 )
 	self.SNDTurretMG:SetParent( self, ID )
+
+	self.SNDTurret = self:AddSoundEmitter( self:WorldToLocal( Muzzle.Pos ), "cannon_shot_ft.wav", "cannon_shot_ft.wav" )
+	self.SNDTurret:SetSoundLevel( 95 )
+	self.SNDTurret:SetParent( self, ID )
 
 	self:AddEngine( Vector(-10,0,65), Angle(0,-90,0) )
 	self:AddFuelTank( Vector(-10,0,65), Angle(0,0,0), 800, LVS.FUELTYPE_PETROL )
