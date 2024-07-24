@@ -28,7 +28,7 @@ function ENT:InitWeapons()
 	//CANNON
 	local weapon = {}
 	weapon.Icon = Material("weapons/cannon.png")
-	weapon.Ammo = 230
+	weapon.Ammo = 100
 	weapon.Delay = 4
 	weapon.HeatRateUp = 1
 	weapon.HeatRateDown = 0.25

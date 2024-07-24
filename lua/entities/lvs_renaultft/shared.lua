@@ -17,7 +17,7 @@ ENT.TurretSeatIndex = 1
 
 ENT.AITEAM = 2
 
-ENT.MaxHealth = 1300
+ENT.MaxHealth = 800
 
 ENT.SpawnNormalOffset = 40
 

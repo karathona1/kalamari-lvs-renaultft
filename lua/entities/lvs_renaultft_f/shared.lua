@@ -43,7 +43,7 @@ function ENT:InitWeapons()
 		bullet.TracerName = "lvs_tracer_yellow"
 		bullet.Force	= 100
 		bullet.HullSize = 0
-		bullet.Damage	= 15
+		bullet.Damage	= 20
 		bullet.Velocity = 30000
 		bullet.Attacker = veh:GetGunnerSeat():GetDriver()
 		veh:LVSFireBullet( bullet )
