@@ -120,7 +120,7 @@ else
 	ENT.TrackLeftSubMaterialID = 3
 	ENT.TrackLeftSubMaterialMul = Vector(0,-0.001,0)
 
-	ENT.TrackRightSubMaterialID = 3
+	ENT.TrackRightSubMaterialID = 4
 	ENT.TrackRightSubMaterialMul = Vector(0,-0.001,0)
 
 	ENT.TrackPoseParameterLeft = "spin_wheels_left"

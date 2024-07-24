@@ -57,7 +57,7 @@ function ENT:OnSpawn( PObj )
 	TurretArmor:SetLabel( "Turret" )
 	self:SetTurretArmor( TurretArmor )
 
-	self:AddTrailerHitch( Vector(-112.92,0,37.25), LVS.HITCHTYPE_MALE )
+	self:AddTrailerHitch( Vector(-55,0,15), LVS.HITCHTYPE_MALE )
 end
 
 -- set material on death

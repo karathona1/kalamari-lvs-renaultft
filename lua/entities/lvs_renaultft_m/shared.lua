@@ -14,7 +14,7 @@ ENT.MDL = "models/tank_ft_male.mdl"
 
 ENT.TrackLeftSubMaterialID = 2
 ENT.TrackLeftSubMaterialMul = Vector(0,-0.001,0)
-ENT.TrackRightSubMaterialID = 2
+ENT.TrackRightSubMaterialID = 3
 ENT.TrackRightSubMaterialMul = Vector(0,-0.001,0)
 
 // used in cl_optics.lua
