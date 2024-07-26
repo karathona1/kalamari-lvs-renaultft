@@ -22,10 +22,12 @@ ENT.MaxHealth = 800
 ENT.SpawnNormalOffset = 40
 
 //damage system
-ENT.DSArmorIgnoreForce = 1800
-ENT.CannonArmorPenetration = 3900
+ENT.DSArmorDamageReduction = 0.0025
+ENT.DSArmorDamageReductionType = DMG_BLAST + DMG_BULLET + DMG_BURN
+ENT.DSArmorIgnoreForce = 2000
+ENT.CannonArmorPenetration = 2400
 
-ENT.MaxVelocity = 190
+ENT.MaxVelocity = 240
 ENT.MaxVelocityReverse = 120
 
 ENT.EngineCurve = 0.2

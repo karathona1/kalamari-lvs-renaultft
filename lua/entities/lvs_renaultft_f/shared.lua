@@ -45,7 +45,7 @@ function ENT:InitWeapons()
 		bullet.HullSize = 0
 		bullet.Damage	= 20
 		bullet.Velocity = 30000
-		bullet.Attacker = veh:GetGunnerSeat():GetDriver()
+		bullet.Attacker = veh:GetDriver()
 		veh:LVSFireBullet( bullet )
 
 		local effectdata = EffectData()

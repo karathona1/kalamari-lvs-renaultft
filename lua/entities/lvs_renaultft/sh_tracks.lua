@@ -2,26 +2,24 @@
 if SERVER then
 	ENT.PivotSteerEnable = true
 	ENT.PivotSteerByBrake = false
-	ENT.PivotSteerWheelRPM = 15
+	ENT.PivotSteerWheelRPM = 11
 
 	function ENT:TracksCreate( PObj )
 		local WheelModel = "models/props_vehicles/tire001b_truck.mdl"
 
 		local L1 = self:AddWheel( { hide = true, wheeltype = LVS.WHEELTYPE_LEFT, pos = Vector(90,30,22), mdl = WheelModel } )
-		local L2 = self:AddWheel( { hide = true, wheeltype = LVS.WHEELTYPE_LEFT, pos = Vector(60,30,22), mdl = WheelModel } )
-		local L3 = self:AddWheel( { hide = true, wheeltype = LVS.WHEELTYPE_LEFT, pos = Vector(30,30,22), mdl = WheelModel } )
-		local L4 = self:AddWheel( { hide = true, wheeltype = LVS.WHEELTYPE_LEFT, pos = Vector(0,30,22), mdl = WheelModel } )
-		local L5 = self:AddWheel( { hide = true, wheeltype = LVS.WHEELTYPE_LEFT, pos = Vector(-30,30,22), mdl = WheelModel } )
-		local LeftWheelChain = self:CreateWheelChain( { L1, L2, L3, L4, L5 } )
-		self:SetTrackDriveWheelLeft( L2 )
+		local L2 = self:AddWheel( { hide = true, wheeltype = LVS.WHEELTYPE_LEFT, pos = Vector(50,30,22), mdl = WheelModel } )
+		local L3 = self:AddWheel( { hide = true, wheeltype = LVS.WHEELTYPE_LEFT, pos = Vector(10,30,22), mdl = WheelModel } )
+		local L4 = self:AddWheel( { hide = true, wheeltype = LVS.WHEELTYPE_LEFT, pos = Vector(-30,30,22), mdl = WheelModel } )
+		local LeftWheelChain = self:CreateWheelChain( { L1, L2, L3, L4 } )
+		self:SetTrackDriveWheelLeft( L4 )
 
 		local R1 = self:AddWheel( { hide = true, wheeltype = LVS.WHEELTYPE_RIGHT, pos = Vector(90,-30,22), mdl = WheelModel } )
-		local R2 = self:AddWheel( { hide = true, wheeltype = LVS.WHEELTYPE_RIGHT, pos = Vector(60,-30,22), mdl = WheelModel } )
-		local R3 = self:AddWheel( { hide = true, wheeltype = LVS.WHEELTYPE_RIGHT, pos = Vector(30,-30,22), mdl = WheelModel } )
-		local R4 = self:AddWheel( { hide = true, wheeltype = LVS.WHEELTYPE_RIGHT, pos = Vector(0,-30,22), mdl = WheelModel } )
-		local R5 = self:AddWheel( { hide = true, wheeltype = LVS.WHEELTYPE_RIGHT, pos = Vector(-30,-30,22), mdl = WheelModel } )
-		local RightWheelChain = self:CreateWheelChain( { R1, R2, R3, R4, R5 } )
-		self:SetTrackDriveWheelRight( R2 )
+		local R2 = self:AddWheel( { hide = true, wheeltype = LVS.WHEELTYPE_RIGHT, pos = Vector(50,-30,22), mdl = WheelModel } )
+		local R3 = self:AddWheel( { hide = true, wheeltype = LVS.WHEELTYPE_RIGHT, pos = Vector(10,-30,22), mdl = WheelModel } )
+		local R4 = self:AddWheel( { hide = true, wheeltype = LVS.WHEELTYPE_RIGHT, pos = Vector(-30,-30,22), mdl = WheelModel } )
+		local RightWheelChain = self:CreateWheelChain( { R1, R2, R3, R4 } )
+		self:SetTrackDriveWheelRight( R4 )
 
 		local LeftTracksArmor = self:AddArmor( Vector(45,30,50), Angle(0,0,0), Vector(-100,-10,-55), Vector(70,10,-5), 800, self.FrontArmor )
 		LeftTracksArmor.OnDestroyed = LeftWheelChain.OnDestroyed
@@ -37,7 +35,7 @@ if SERVER then
 			Axle = {
 				ForwardAngle = Angle(0,0,0),
 				SteerType = LVS.WHEEL_STEER_FRONT,
-				SteerAngle = 10,
+				SteerAngle = 22,
 				TorqueFactor = 0,
 				BrakeFactor = 1,
 				UseHandbrake = true,
@@ -76,7 +74,7 @@ if SERVER then
 			Axle = {
 				ForwardAngle = Angle(0,0,0),
 				SteerType = LVS.WHEEL_STEER_REAR,
-				SteerAngle = 10,
+				SteerAngle = 22,
 				TorqueFactor = 0,
 				BrakeFactor = 1,
 				UseHandbrake = true,

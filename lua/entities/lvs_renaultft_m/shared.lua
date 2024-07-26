@@ -42,17 +42,17 @@ function ENT:InitWeapons()
 		local bullet = {}
 		bullet.Src 	= Muzzle.Pos
 		bullet.Dir 	= -Muzzle.Ang:Forward()
-		bullet.Spread 	= Vector(0.005,0.005,0.005)
+		bullet.Spread 	= Vector(0.0025,0.0025,0.0025)
 		bullet.TracerName = "lvs_tracer_autocannon"
-		bullet.Force	= 1900
-		bullet.HullSize = 1
-		bullet.Damage	= 350
-		bullet.SplashDamage = 150
+		bullet.Force	= 2400
+		bullet.HullSize = 10
+		bullet.Damage	= 300
+		bullet.SplashDamage = 100
 		bullet.SplashDamageRadius = 100
 		bullet.SplashDamageEffect = "lvs_bullet_impact_explosive"
-		bullet.SplashDamageType = DMG_BLAST
+		bullet.SplashDamageType = DMG_SONIC
 		bullet.Velocity = 8000
-		bullet.Attacker = veh:GetGunnerSeat():GetDriver()
+		bullet.Attacker = veh:GetDriver()
 		veh:LVSFireBullet( bullet )
 
 		local effectdata = EffectData()
