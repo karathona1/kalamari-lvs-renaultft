@@ -7,17 +7,17 @@ if SERVER then
 	function ENT:TracksCreate( PObj )
 		local WheelModel = "models/props_vehicles/tire001b_truck.mdl"
 
-		local L1 = self:AddWheel( { hide = true, wheeltype = LVS.WHEELTYPE_LEFT, pos = Vector(90,30,22), mdl = WheelModel } )
-		local L2 = self:AddWheel( { hide = true, wheeltype = LVS.WHEELTYPE_LEFT, pos = Vector(50,30,22), mdl = WheelModel } )
-		local L3 = self:AddWheel( { hide = true, wheeltype = LVS.WHEELTYPE_LEFT, pos = Vector(10,30,22), mdl = WheelModel } )
-		local L4 = self:AddWheel( { hide = true, wheeltype = LVS.WHEELTYPE_LEFT, pos = Vector(-30,30,22), mdl = WheelModel } )
+		local L1 = self:AddWheel( { hide = true, wheeltype = LVS.WHEELTYPE_LEFT, pos = Vector(90,16,22), mdl = WheelModel } )
+		local L2 = self:AddWheel( { hide = true, wheeltype = LVS.WHEELTYPE_LEFT, pos = Vector(50,16,22), mdl = WheelModel } )
+		local L3 = self:AddWheel( { hide = true, wheeltype = LVS.WHEELTYPE_LEFT, pos = Vector(10,16,22), mdl = WheelModel } )
+		local L4 = self:AddWheel( { hide = true, wheeltype = LVS.WHEELTYPE_LEFT, pos = Vector(-30,16,22), mdl = WheelModel } )
 		local LeftWheelChain = self:CreateWheelChain( { L1, L2, L3, L4 } )
 		self:SetTrackDriveWheelLeft( L4 )
 
-		local R1 = self:AddWheel( { hide = true, wheeltype = LVS.WHEELTYPE_RIGHT, pos = Vector(90,-30,22), mdl = WheelModel } )
-		local R2 = self:AddWheel( { hide = true, wheeltype = LVS.WHEELTYPE_RIGHT, pos = Vector(50,-30,22), mdl = WheelModel } )
-		local R3 = self:AddWheel( { hide = true, wheeltype = LVS.WHEELTYPE_RIGHT, pos = Vector(10,-30,22), mdl = WheelModel } )
-		local R4 = self:AddWheel( { hide = true, wheeltype = LVS.WHEELTYPE_RIGHT, pos = Vector(-30,-30,22), mdl = WheelModel } )
+		local R1 = self:AddWheel( { hide = true, wheeltype = LVS.WHEELTYPE_RIGHT, pos = Vector(90,-16,22), mdl = WheelModel } )
+		local R2 = self:AddWheel( { hide = true, wheeltype = LVS.WHEELTYPE_RIGHT, pos = Vector(50,-16,22), mdl = WheelModel } )
+		local R3 = self:AddWheel( { hide = true, wheeltype = LVS.WHEELTYPE_RIGHT, pos = Vector(10,-16,22), mdl = WheelModel } )
+		local R4 = self:AddWheel( { hide = true, wheeltype = LVS.WHEELTYPE_RIGHT, pos = Vector(-30,-16,22), mdl = WheelModel } )
 		local RightWheelChain = self:CreateWheelChain( { R1, R2, R3, R4 } )
 		self:SetTrackDriveWheelRight( R4 )
 
