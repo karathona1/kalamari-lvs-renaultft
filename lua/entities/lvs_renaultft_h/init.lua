@@ -11,19 +11,22 @@ function ENT:MakeProjectile()
 
 	local Driver = self:GetDriver()
 
+	local ang = Muzzle.Ang
+
 	local projectile = ents.Create( "lvs_bomb" )
 	projectile:SetPos( Muzzle.Pos )
-	projectile:SetAngles( Muzzle.Ang:Forward() )
+	ang:RotateAroundAxis(ang:Right(), 180)
+	projectile:SetAngles( ang )
 	projectile:SetParent( self, ID )
 	projectile:Spawn()
 	projectile:Activate()
 	projectile:SetModel("models/misc/88mm_projectile.mdl")
 	projectile:SetAttacker( IsValid( Driver ) and Driver or self )
 	projectile:SetEntityFilter( self:GetCrosshairFilterEnts() )
-	projectile:SetSpeed( -Muzzle.Ang:Forward() * 4000 )
-	projectile:SetDamage( 400 )
+	projectile:SetSpeed( -Muzzle.Ang:Forward() * 2000 )
+	projectile:SetDamage( 500 )
 	projectile.UpdateTrajectory = function( bomb )
-		bomb:SetSpeed( bomb:GetForward() * 4000 )
+		bomb:SetSpeed( bomb:GetForward() * 2000 )
 	end
 
 	if projectile.SetMaskSolid then
@@ -49,13 +52,13 @@ function ENT:FireProjectile()
 
 	local effectdata = EffectData()
 	effectdata:SetOrigin( Muzzle.Pos )
-	effectdata:SetNormal( Muzzle.Ang:Forward() )
+	effectdata:SetNormal( -Muzzle.Ang:Forward() )
 	effectdata:SetEntity( self )
 	util.Effect( "lvs_haubitze_muzzle", effectdata )
 
 	local PhysObj = self:GetPhysicsObject()
 	if IsValid( PhysObj ) then
-		PhysObj:ApplyForceOffset( Muzzle.Ang:Forward() * 250000, Muzzle.Pos )
+		PhysObj:ApplyForceOffset( Muzzle.Ang:Forward() * 150000, Muzzle.Pos )
 	end
 
 	self:TakeAmmo()
@@ -68,5 +71,5 @@ function ENT:FireProjectile()
 
 	self.SNDTurret:PlayOnce( 100 + math.cos( CurTime() + self:EntIndex() * 1337 ) * 5 + math.Rand(-1,1), 1 )
 
-	self:EmitSound("lvs/vehicles/wespe/cannon_reload.wav", 75, 100, 1, CHAN_WEAPON )
+	self:EmitSound("lvs/vehicles/wespe/cannon_reload.wav", 65, 100, 1, CHAN_WEAPON )
 end

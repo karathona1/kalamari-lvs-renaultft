@@ -29,9 +29,9 @@ function ENT:InitWeapons()
 	local weapon = {}
 	weapon.Icon = Material("weapons/cannon.png")
 	weapon.Ammo = 24
-	weapon.Delay = 6
+	weapon.Delay = 5
 	weapon.HeatRateUp = 0
-	weapon.HeatRateDown = 0.1666
+	weapon.HeatRateDown = 0.2
 	weapon.StartAttack = function( ent )
 	
 		if self:GetAI() then return end
@@ -39,9 +39,11 @@ function ENT:InitWeapons()
 		self:MakeProjectile()
 	end
 	weapon.FinishAttack = function( ent )
+		local veh = ent:GetVehicle()
 		if self:GetAI() then return end
 
 		self:FireProjectile()
+		veh:PlayAnimation("gun_recoil")
 	end
 	weapon.Attack = function( ent )
 		if not self:GetAI() then return end

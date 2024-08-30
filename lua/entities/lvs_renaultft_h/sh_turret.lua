@@ -1,11 +1,11 @@
-include("entities/lvs_tank_wheeldrive/modules/sh_turret.lua")
+include("entities/kalamari-renault-ft/sh_turret.lua")
 
-ENT.TurretAimRate = 10
+ENT.TurretAimRate = 5
 
 ENT.TurretRotationSound = "gun_traverse1.wav"
 
 ENT.TurretPitchPoseParameterName = "turret_pitch"
-ENT.TurretPitchMin = -30
+ENT.TurretPitchMin = -50
 ENT.TurretPitchMax = 30
 ENT.TurretPitchMul = 1
 ENT.TurretPitchOffset = 0
