@@ -34,6 +34,10 @@ function ENT:OnSpawn( PObj )
 	self.SNDTurret:SetSoundLevel( 95 )
 	self.SNDTurret:SetParent( self, ID )
 
+	self.SNDTurretHowi = self:AddSoundEmitter( self:WorldToLocal( Muzzle.Pos ), "howi_shot_ft.wav", "howi_shot_ft.wav" )
+	self.SNDTurretHowi:SetSoundLevel( 95 )
+	self.SNDTurretHowi:SetParent( self, ID )
+
 	self:AddEngine( Vector(-10,0,65), Angle(0,-90,0) )
 	self:AddFuelTank( Vector(-10,0,65), Angle(0,0,0), 800, LVS.FUELTYPE_PETROL )
 

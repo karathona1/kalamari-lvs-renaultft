@@ -17,13 +17,13 @@ ENT.TurretSeatIndex = 1
 
 ENT.AITEAM = 2
 
-ENT.MaxHealth = 800
+ENT.MaxHealth = 700
 
 ENT.SpawnNormalOffset = 40
 
 //damage system
 ENT.DSArmorDamageReduction = 0.0025
-ENT.DSArmorDamageReductionType = DMG_BLAST + DMG_BULLET + DMG_BURN
+ENT.DSArmorDamageReductionType = DMG_BULLET + DMG_BURN
 ENT.DSArmorIgnoreForce = 2000
 ENT.CannonArmorPenetration = 2400
 
