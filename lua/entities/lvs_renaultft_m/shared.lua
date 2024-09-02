@@ -28,10 +28,10 @@ function ENT:InitWeapons()
 	//CANNON
 	local weapon = {}
 	weapon.Icon = Material("weapons/cannon.png")
-	weapon.Ammo = 100
-	weapon.Delay = 4
+	weapon.Ammo = 240
+	weapon.Delay = 3.5
 	weapon.HeatRateUp = 1
-	weapon.HeatRateDown = 0.25
+	weapon.HeatRateDown = 0.2857
 	weapon.Attack = function( ent )
 		local veh = ent:GetVehicle()
 		local ID = veh:LookupAttachment( "gun_muzzle" )

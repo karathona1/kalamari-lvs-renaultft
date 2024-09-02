@@ -17,8 +17,16 @@ ENT.TrackLeftSubMaterialMul = Vector(0,-0.001,0)
 ENT.TrackRightSubMaterialID = 3
 ENT.TrackRightSubMaterialMul = Vector(0,-0.001,0)
 
+ENT.MaxVelocity = 220
+ENT.MaxVelocityReverse = 110
+
+ENT.PhysicsDampingSpeed = 4000
+
+ENT.EngineCurve = 0.2
+ENT.EngineTorque = 160
+
 // used in cl_optics.lua
-ENT.WeaponName = "CANON 75mm"
+ENT.WeaponName = "SCHNEIDER 75mm"
 
 //used in cl_tankview.lua
 function ENT:TankViewOverride( ply, pos, angles, fov, pod )
@@ -86,7 +94,7 @@ function ENT:InitWeapons()
 	//CANNON
 	local weapon = {}
 	weapon.Icon = Material("weapons/cannon.png")
-	weapon.Ammo = 40
+	weapon.Ammo = 60
 	weapon.Delay = 5
 	weapon.HeatRateUp = 0
 	weapon.HeatRateDown = 0.2

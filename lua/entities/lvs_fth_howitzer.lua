@@ -29,6 +29,7 @@ if SERVER then
 		return self._FilterEnts or {}
 	end
 	function ENT:SetDamage( num ) self._dmg = num end
+	--function ENT:SetDamageType( DMG_DIRECT )
 	function ENT:SetThrust( num ) self._thrust = num end
 	function ENT:SetRadius( num ) self._radius = num end
 	function ENT:SetAttacker( ent )
@@ -278,7 +279,7 @@ function ENT:OnRemove()
 	self:SoundStop()
 end
 
-local color_red = Color(255,0,0,255)
+local color_white = Color(255,0,0)
 local HudTargets = {}
 hook.Add( "HUDPaint", "!!!!lvs_bomb_hud", function()
 	for ID, _ in pairs( HudTargets ) do
@@ -313,7 +314,7 @@ hook.Add( "HUDPaint", "!!!!lvs_bomb_hud", function()
 				mask = Mask,
 			} )
 
-			render.DrawLine( StartPos, EndPos, color_red )
+			render.DrawLine( StartPos, EndPos, color_white )
 
 			Pos = EndPos
 
@@ -327,7 +328,7 @@ hook.Add( "HUDPaint", "!!!!lvs_bomb_hud", function()
 
 		if not TargetPos.visible then continue end
 
-		surface.DrawCircle( TargetPos.x, TargetPos.y, 20, color_red )
+		surface.DrawCircle( TargetPos.x, TargetPos.y, 20, color_white )
 	end
 end )
 

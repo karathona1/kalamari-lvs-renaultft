@@ -3,17 +3,16 @@ include("shared.lua")
 
 AddCSLuaFile("cl_init.lua")
 
-function ENT:MakeProjectile()
+function ENT:MakeProjectile( ent )
+
 	local ID = self:LookupAttachment( "gun_muzzle" )
 	local Muzzle = self:GetAttachment( ID )
 
 	if not Muzzle then return end
-
 	local Driver = self:GetDriver()
+	local projectile = ents.Create( "lvs_fth_howitzer" )
 
 	local ang = Muzzle.Ang
-
-	local projectile = ents.Create( "lvs_fth_howitzer" )
 	projectile:SetPos( Muzzle.Pos )
 	ang:RotateAroundAxis(ang:Right(), 180)
 	projectile:SetAngles( ang )
@@ -23,11 +22,12 @@ function ENT:MakeProjectile()
 	projectile:SetModel("models/misc/88mm_projectile.mdl")
 	projectile:SetAttacker( IsValid( Driver ) and Driver or self )
 	projectile:SetEntityFilter( self:GetCrosshairFilterEnts() )
-	projectile:SetSpeed( -Muzzle.Ang:Forward() * 3000 )
+	projectile:SetSpeed( Muzzle.Ang:Forward() * 2500 )
 	projectile:SetDamage( 400 )
 	projectile:SetRadius( 150 )
+
 	projectile.UpdateTrajectory = function( bomb )
-		bomb:SetSpeed( bomb:GetForward() * 3000 )
+		bomb:SetSpeed( bomb:GetForward() * 2500 )
 	end
 
 	if projectile.SetMaskSolid then
@@ -37,7 +37,7 @@ function ENT:MakeProjectile()
 	self._ProjectileEntity = projectile
 end
 
-function ENT:FireProjectile()
+function ENT:FireProjectile( ent )
 	local ID = self:LookupAttachment( "gun_muzzle" )
 	local Muzzle = self:GetAttachment( ID )
 
@@ -55,11 +55,11 @@ function ENT:FireProjectile()
 	effectdata:SetOrigin( Muzzle.Pos )
 	effectdata:SetNormal( -Muzzle.Ang:Forward() )
 	effectdata:SetEntity( self )
-	util.Effect( "lvs_haubitze_muzzle", effectdata )
+	util.Effect( "lvs_muzzle", effectdata )
 
 	local PhysObj = self:GetPhysicsObject()
 	if IsValid( PhysObj ) then
-		PhysObj:ApplyForceOffset( Muzzle.Ang:Forward() * 150000, Muzzle.Pos )
+		PhysObj:ApplyForceOffset( Muzzle.Ang:Forward() * 125000, Muzzle.Pos )
 	end
 
 	self:TakeAmmo()

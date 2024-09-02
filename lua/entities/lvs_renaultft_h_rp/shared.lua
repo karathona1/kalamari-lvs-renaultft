@@ -18,7 +18,7 @@ ENT.TrackRightSubMaterialID = 3
 ENT.TrackRightSubMaterialMul = Vector(0,-0.001,0)
 
 // used in cl_optics.lua
-ENT.WeaponName = "CANON 75mm"
+ENT.WeaponName = "SCHNEIDER 75mm"
 
 //resume shared
 ENT.TurretSeatIndex = 2
@@ -29,7 +29,7 @@ function ENT:InitWeapons()
 	//CANNON
 	local weapon = {}
 	weapon.Icon = Material("weapons/cannon.png")
-	weapon.Ammo = 24
+	weapon.Ammo = 36
 	weapon.Delay = 5
 	weapon.HeatRateUp = 0
 	weapon.HeatRateDown = 0.2

@@ -8,11 +8,12 @@ ENT.OpticsPodIndex = nil -- do not put a table here, lua inheritance will FUCK i
 local axis = Material( "lvs/circle_hollow.png" )
 local sight = Material( "lvs/shermansights.png" )
 local scope = Material( "weapons/scope_filled.png" )
+local drawCrosshair = false
 
 function ENT:PaintOptics( Pos2D, Col, PodIndex, Type )
 	surface.SetMaterial( axis )
-	surface.SetDrawColor( 255, 255, 255, 1 )
-	surface.DrawTexturedRect( Pos2D.x, Pos2D.y, 16, 16 )
+	surface.SetDrawColor( 255, 255, 255, 10)
+	surface.DrawTexturedRect( Pos2D.x - 7, Pos2D.y + 1, 16, 16 )
 	surface.SetDrawColor( 0, 0, 0, 255, 1 )
 	surface.DrawTexturedRect( Pos2D.x - 8, Pos2D.y, 16, 16 )
 
@@ -21,6 +22,7 @@ function ENT:PaintOptics( Pos2D, Col, PodIndex, Type )
 	surface.DrawTexturedRect( Pos2D.x - 210, Pos2D.y - 23, 420, 420 )
 
 	self:DrawRotatedText( self.WeaponName, Pos2D.x + 55, Pos2D.y + 10, "LVS_FONT_PANEL", Color(0,0,0,220), 0)
+	self:DrawRotatedText( self.WeaponName, Pos2D.x + 54, Pos2D.y + 11, "LVS_FONT_PANEL", Color(255,255,255,10), 0)
 
 	local diameter = ScrH()
 	local radius = diameter * 0.5
