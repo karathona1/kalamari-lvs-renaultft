@@ -19,7 +19,7 @@ ENT.AITEAM = 2
 
 ENT.MaxHealth = 700
 
-ENT.SpawnNormalOffset = 40
+ENT.SpawnNormalOffset = 35
 
 //damage system
 ENT.DSArmorDamageReduction = 0.0025
